@@ -1,0 +1,12 @@
+<h1>Editer le commentaire</h1>
+
+<div>
+  <%= form_tag url_for(action: 'update'), method: "patch" do %>
+    <br /> <br />
+    <%= label_tag 'Content' %>
+    <%= text_area_tag 'content', @current_comment.content %>
+    <br /> <br />
+    <br /> <br />
+    <%= submit_tag "Edit Commentaire" %>
+  <% end %>
+</div>

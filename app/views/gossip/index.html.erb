@@ -1,0 +1,35 @@
+<body>
+
+<% if params[:success] %>
+  <div class="alert alert-success" role="alert">
+    Votre potin a été créé avec succès !
+  </div>
+<% end %>
+
+
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Bienvenue sur notre magnifique site de potins !</h1>
+    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    <p><%= link_to "Cliquez ici pour creer votre propre potin.", new_gossip_path, :class => "btn btn-dark"%></p>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="row">
+<%@all_gossips.each do |elem|%>
+  <div class="col-md-2">
+    <div class="card mb-2">
+      <div class="card-body">
+        <h5 class="card-title"><%= elem.title %></h5>
+        <p class="card-text"><small class="text-muted">Posted by <%= link_to elem.user.first_name, user_path(elem.user) %></small></p>
+        <%= link_to "Read more", gossip_path(elem), class: "btn btn-dark" %>
+        Commentaires : <%=elem.comments.count%>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+</div>
+

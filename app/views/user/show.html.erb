@@ -1,0 +1,13 @@
+<div class="container text-center justify-content-center">
+
+<h1>Bienvenu sur le profil de <%= @current_user.first_name %></h1>
+
+<p>Prénom : <%= @current_user.first_name %> </p>
+<p>Nom : <%= @current_user.last_name %>  </p>
+<p>Âge : <%= @current_user.age %>  </p>
+<p>Email : <%= @current_user.email %>  </p>
+<p>Habite : <%= link_to @current_user.city.name, city_path(@current_user.city.id), :class => "nav-link"%>  </p>
+<p>Description : <%= @current_user.description %>  </p>
+<p>Find me in app/views/static/index.html.erb</p>
+
+</div>

@@ -1,0 +1,35 @@
+<div class="container text-center justify-content-center">
+
+<h1>Bienvenue sur la page Gossip n°<%=@current_gossip.id %></h1>
+
+<p>Auteur du Potin : <%= link_to @current_gossip.user.first_name, user_path(@current_gossip.user.id), :class => "nav-link"%> </p>
+<p>Titre du Potin : <%=@current_gossip.title %></p>
+<p>Date de creation du Potin : <%=@current_gossip.created_at %></p>
+<p>Potin : <%=@current_gossip.content %></p>
+
+<%= link_to "edit your potin", edit_gossip_path(@current_gossip.id), :class => "nav-link"%> 
+</div>
+<%= button_to "Delete", gossip_path(@current_gossip), method: :delete, class: "btn btn-danger" %>
+
+<%= button_to "Edit", edit_gossip_path(@current_gossip.id), method: :get, class: "btn btn-secondary" %>
+
+<%= button_to "Comment", new_comment_path(gossip_id: @current_gossip.id), method: :get, class: "btn btn-secondary" %>
+
+Commentaires (<%=@current_gossip.comments.count%>) :
+<div class="container text-center">
+    <%@current_gossip.comments.each do |elem|%>
+        <p><strong> <%= elem.user.first_name%></strong> :
+        <%= elem.content%>
+        <small><%= button_to "Supprimer", gossip_comment_path(@current_gossip.id, elem.id), form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete, class: "btn btn-danger" %></small>
+         <%= link_to "Editer", edit_gossip_comment_path(@current_gossip.id, elem.id), :class => "btn btn-danger"%>
+         </p>
+        <%end%>
+</div>
+<div>
+  <%= form_with url: url_for(controller: 'comment', action: 'create', gossip_id: @current_gossip.id) do |form| %>
+    <%= form.label :commentaire %>
+    <%= form.text_area :content %>
+
+    <%= form.submit %>
+  <% end %>
+</div>

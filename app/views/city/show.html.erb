@@ -1,0 +1,22 @@
+
+
+<div class="container text-center justify-content-center">
+
+<h1>Liste des potins dans la ville de <%= @current_city.name %></h1>
+
+<div class="row">
+<%@current_city.gossips.each do |elem|%>
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title"><%= elem.title %></h5>
+          <p class="card-text"><small class="text-muted">Posted by <%= link_to elem.user.first_name, user_path(elem.user) %></small></p>
+          <%= link_to "Read more", gossip_path(elem), class: "btn btn-dark" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+  </div>
+
+
