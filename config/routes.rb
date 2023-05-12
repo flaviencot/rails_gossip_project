@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources :session, only: [:new, :create, :destroy]
   get 'team', to: 'static#team'
   get 'contact', to: 'static#contact'
-  get 'welcome/:user_name', to: 'welcome#show'
   root 'gossip#index'
 
 end

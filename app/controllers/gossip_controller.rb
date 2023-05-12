@@ -13,7 +13,7 @@ class GossipController < ApplicationController
     @gossip = Gossip.new('user_id' => User.all.sample.id,
                    'title' => params[:title],
                    'content' => params[:content])
-    @gossip.user = User.find_by(id: session[:user_id])
+    #@gossip.user = User.find_by(id: session[:user_id])
     if @gossip.save
       redirect_to root_path(success: true)
     else

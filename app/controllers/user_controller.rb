@@ -10,10 +10,11 @@ class UserController < ApplicationController
                    'last_name' => params[:last_name],
                    'email' => params[:email],
                    'password' => params[:password],
-                   'city_id' => params[:city_id].to_i
+                   'city_id' =>  User.all.sample.id           
                    )
-    if @user.save
-      session[:user_id] = user.id
+                   if @user.save
+      @user.authenticate(params[:password])
+      session[:user_id] = @user.id
       redirect_to root_path(success: true)
     else
       render :new
