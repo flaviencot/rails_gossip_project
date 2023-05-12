@@ -1,2 +1,1 @@
-<h1>Static#team</h1>
-<p>Find me in app/views/static/index.html.erb</p>
+<h2>Bienvenue <%= User.find_by(id: session[:user_id]).first_name %> !</h2>

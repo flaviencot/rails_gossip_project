@@ -1,11 +1,27 @@
 class UserController < ApplicationController
+
+  
   def index
   end
 
   def create
+    @user = User.new(
+                   'first_name' => params[:first_name],
+                   'last_name' => params[:last_name],
+                   'email' => params[:email],
+                   'password' => params[:password],
+                   'city_id' => params[:city_id].to_i
+                   )
+    if @user.save
+      session[:user_id] = user.id
+      redirect_to root_path(success: true)
+    else
+      render :new
+    end
   end
 
   def new
+    @user = User.new
   end
 
   def edit
@@ -20,4 +36,6 @@ class UserController < ApplicationController
 
   def destroy
   end
+
+
 end

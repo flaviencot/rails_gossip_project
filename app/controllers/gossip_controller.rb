@@ -13,6 +13,7 @@ class GossipController < ApplicationController
     @gossip = Gossip.new('user_id' => User.all.sample.id,
                    'title' => params[:title],
                    'content' => params[:content])
+    @gossip.user = User.find_by(id: session[:user_id])
     if @gossip.save
       redirect_to root_path(success: true)
     else
@@ -22,7 +23,6 @@ class GossipController < ApplicationController
 
   def edit
     @gossip = Gossip.find(params[:id].to_i)
-
   end
 
   def show
@@ -43,4 +43,6 @@ class GossipController < ApplicationController
     @gossip.destroy
     redirect_to root_path
   end
+
 end
+

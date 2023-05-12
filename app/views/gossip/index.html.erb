@@ -1,17 +1,39 @@
 <body>
-
 <% if params[:success] %>
   <div class="alert alert-success" role="alert">
     Votre potin a été créé avec succès !
   </div>
 <% end %>
+<% if params[:edit_success] %>
+  <div class="alert alert-success" role="alert">
+    Votre potin a été modifie avec succès !
+  </div>
+<% end %>
+<% if params[:destroy_success] %>
+  <div class="alert alert-success" role="alert">
+    Votre potin a été supprime avec succès !
+  </div>
+<% end %>
 
+<% if params[:update_failed] || params[:destroy_failed] %>
+  <div class="alert alert-danger" role="alert">
+    Ce n'est pas votre potin !
+  </div>
+<% end %>
 
 <div class="jumbotron">
   <div class="container">
-    <h1 class="display-3">Bienvenue sur notre magnifique site de potins !</h1>
+    <h1 class="display-3">Bienvenue 
+    <% if logged_in? %>
+      <%= User.find_by(id: session[:user_id]).first_name %> !
+    <% else %>
+      !
+    <% end %></h1>
     <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
     <p><%= link_to "Cliquez ici pour creer votre propre potin.", new_gossip_path, :class => "btn btn-dark"%></p>
+
+
+
   </div>
 </div>
 
